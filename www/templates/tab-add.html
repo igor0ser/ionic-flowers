@@ -1,0 +1,19 @@
+<ion-view view-title="Add a flower">
+  <ion-content class="padding">
+    <form class="add-flower" ng-submit="add()">
+      <div class="list">
+        <label class="item item-input">
+          <i class="icon ion-ios-rose-outline"></i>
+          <span class="input-label">Flower:</span>
+          <input type="text" ng-model="newFlower.name" required>
+        </label>
+        <label class="item item-input">
+          <i class="icon ion-ios-alarm-outline"></i>
+          <span class="input-label">Days:</span>
+          <input type="number" ng-model="newFlower.days" required>
+        </label>
+      </div>
+      <button class="button button-block button-royal">Add</button>
+    </form>
+  </ion-content>
+</ion-view>

@@ -1,0 +1,17 @@
+/* Empty. Add your own CSS if you like */
+
+.add-flower .icon {
+	margin-right: 8px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+	/* display: none; <- Crashes Chrome on hover */
+	-webkit-appearance: none;
+	margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+.tab-item-active .icon:before,
+.tab-item-active .tab-title{
+	color: #886aea;
+}
