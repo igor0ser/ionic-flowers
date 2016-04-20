@@ -1,6 +1,6 @@
 angular.module('flowers')
 
-.service('account', function($window){
+.service('ls', function($window, model){
   var KEY = 'my_flowers_list_account_for_ionic_application';
   var _this = this;
 
@@ -10,22 +10,23 @@ angular.module('flowers')
 
 
   function get(){
-    var accountString = $window.localStorage.getItem(KEY);
-    if (!accountString) return {
-      time: 12,
-      flowers: []
-    };
+    var modelString = $window.localStorage.getItem(KEY);
+    if (!modelString) return;
 
-    var accountObject = angular.fromJson(accountString);
+
+    var modelObj = angular.fromJson(modelString);
+    model.time = modelObj.time;
+    model.flowers = modelObj.flowers;
+
 /*    for (var i = 0; i < flowersObject.items.length; i++){
       flowersObject.items[i].deadline = new Date(profileObject.items[i].deadline);
     }*/
-    return accountObject;
+    return modelObj;
   }
 
-  function set(account){
-    var accountString = angular.toJson(account);
-    $window.localStorage.setItem(KEY, accountString);
+  function set(){
+    var modelString = angular.toJson(model);
+    $window.localStorage.setItem(KEY, modelString);
   }
 
   function add(flower){

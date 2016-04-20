@@ -7,7 +7,7 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('flowers', ['ionic'])
 
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform, ls) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -21,6 +21,7 @@ angular.module('flowers', ['ionic'])
       StatusBar.styleDefault();
     }
   });
+  ls.get();
 })
 
 .config(function($stateProvider, $urlRouterProvider) {
@@ -59,22 +60,24 @@ angular.module('flowers', ['ionic'])
         }
       }
     })
-    .state('tab.chat-detail', {
-      url: '/chats/:chatId',
+
+  .state('tab.details', {
+      url: '/details/:flowerId',
       views: {
-        'tab-chats': {
-          templateUrl: 'templates/chat-detail.html',
-          controller: 'ChatDetailCtrl'
+        'tab-flowers': {
+          templateUrl: 'templates/flower-details.html',
+          controller: 'FlowerDetailsController'
         }
       }
     })
 
-  .state('tab.account', {
-    url: '/account',
+
+  .state('tab.settings', {
+    url: '/settings',
     views: {
       'tab-account': {
-        templateUrl: 'templates/tab-account.html',
-        controller: 'AccountCtrl'
+        templateUrl: 'templates/tab-settings.html',
+        controller: 'SettingsCtrl'
       }
     }
   });

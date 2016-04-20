@@ -1,39 +1,44 @@
 angular.module('flowers')
 
-.controller('AddCtrl', function($scope, $rootScope, $state, account) {
-  $scope.newFlower = {
+.controller('AddCtrl', function($scope, $rootScope, $state, ls, model) {
+  $scope.flower = {
     name: '',
-    days: '',
-    photo: 'img/default-flower.png'
+    days: ''
   };
 
-
   $scope.add = function(){
-    console.log($scope.newFlower);
-    account.add($scope.newFlower);
-    console.log(account);
-    $scope.newFlower.name = '';
-    $scope.newFlower.days = '';
+    var newFlower = {};
+    angular.copy($scope.flower, newFlower);
+    newFlower.id = '' + new Date().getTime();
+    newFlower.photo = 'img/default-flower.png';
+    model.flowers.push(newFlower);
+    ls.set(model);
+    $scope.flower.name = '';
+    $scope.flower.days = '';
     $state.go('tab.flowers');
   };
 
 })
 
-.controller('FlowersCtrl', function($scope, account) {
-  $scope.flowers = account.get().flowers;
+.controller('FlowersCtrl', function($scope, model) {
+  console.log(123);
+  $scope.flowers = model.flowers;
   $scope.$on('$ionicView.loaded', function() {
-    $scope.flowers = account.get().flowers;
+    $scope.flowers = model.flowers;
   });
 })
 
-.controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
-  $scope.chat = Chats.get($stateParams.chatId);
+.controller('FlowerDetailsController', function($scope, $stateParams, model) {
+  for (var i = 0; i < model.flowers.length; i++) {
+    if ($stateParams.flowerId == model.flowers[i].id){
+      $scope.flower = model.flowers[i];
+    }
+  }
+  $scope.flower.created = new Date(+$scope.flower.id).toLocaleString("ua");
 })
 
-.controller('AccountCtrl', function($scope) {
-  $scope.settings = {
-    enableFriends: true
-  };
+.controller('SettingsCtrl', function($scope, model) {
+  $scope.time = model.time;
 });
 
 

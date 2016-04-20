@@ -6,12 +6,24 @@
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-	/* display: none; <- Crashes Chrome on hover */
 	-webkit-appearance: none;
-	margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+	margin: 0;
 }
 
 .tab-item-active .icon:before,
 .tab-item-active .tab-title{
 	color: #886aea;
+}
+
+.text-center{
+	text-align: center;
+}
+
+.flower-photo{
+	display: block;
+	margin: auto;
+	width: 100%;
+	max-width: 250px;
+	height: auto;
+	border-radius: 50%;
 }
