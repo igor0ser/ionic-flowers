@@ -12,7 +12,7 @@
 			var newFlower = {};
 			angular.copy($scope.flower, newFlower);
 			newFlower.id = '' + new Date().getTime();
-			newFlower.photo = 'img/default-flower.png';
+			newFlower.photo = 'img/def-plant.jpg';
 			model.flowers.push(newFlower);
 			ls.set(model);
 			$scope.flower.name = '';

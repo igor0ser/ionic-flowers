@@ -1,7 +1,7 @@
 (function(){
 	'use strict';
 
-	var app = angular.module('app', ['ionic']);
+	var app = angular.module('app', ['ionic', 'ngCordova']);
 
 	app.run(function($ionicPlatform, ls) {
 		ls.get();
