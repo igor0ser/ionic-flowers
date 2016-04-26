@@ -6,9 +6,9 @@
 		var KEY = 'my_flowers_list_account_for_ionic_application';
 		var _this = this;
 
-		this.add = add;
 		this.get = get;
 		this.set = set;
+		this.refresh = refresh;
 
 		function get(){
 			var modelString = $window.localStorage.getItem(KEY);
@@ -24,10 +24,22 @@
 			$window.localStorage.setItem(KEY, modelString);
 		}
 
-		function add(flower){
-			var account = _this.get();
-			account.flowers.push(flower);
-			_this.set(account);
+		function refresh(){
+			console.log(123);
+			$window.localStorage.removeItem(KEY);
+			model.flower = [];
+			model.time = {
+				hours: 12,
+				minutes: 0
+			};
 		}
-});
+	});
+
+	app.filter('time', function(){
+		return function(num){
+			if (('' + num).length === 1) {
+				return num + '0';
+			} else return num;
+		};
+	});
 })();

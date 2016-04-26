@@ -9,7 +9,10 @@
 				$scope.flower = model.flowers[i];
 			}
 		}
+		
 		$scope.flower.created = new Date(+$scope.flower.id).toLocaleString("ua");
+		$scope.daysLeft = getDayDifference($scope.flower.id, $scope.flower.days);
+
 
 		$scope.delete = function(){
 			var i = model.flowers.indexOf($scope.flower);
@@ -17,40 +20,34 @@
 			$state.go('tab.flowers');
 		};
 
+		
+		$ionicPlatform.ready(function() {
 
-		//EXPERIMENTS HERE
-		$scope.image = {
-			src: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia, possimus facilis!',
-			text: 'hello there'
-		};
-
-		$scope.vibrate = function(){
-			$scope.image.text = "vibration";
-			$ionicPlatform.ready(function() {
+			$scope.vibrate = function(){
 				$cordovaVibration.vibrate(1000);
-			});
-		};
-
-
-		$scope.makePhoto = function(){
-			$scope.image.text = "gallery";
-			var options = {
-				destinationType: Camera.DestinationType.DATA_URL,
-				sourceType: Camera.PictureSourceType.CAMERA,
-				quality: 10
 			};
 
-			$cordovaCamera.getPicture(options).then(function(imageData) {
-				var $scope.flower = "data:image/jpeg;base64," + imageData;
-				$scope.flower.photo = img;
-				ls.set();
-			}, function(err) {
+			$scope.makePhoto = function(){
+				var options = {
+					destinationType: Camera.DestinationType.DATA_URL,
+					sourceType: Camera.PictureSourceType.CAMERA,
+					quality: 10,
+					targetWidth: 250, 
+					targetHeight: 250
+				};
+				$cordovaCamera.getPicture(options).then(function(imageData) {
+					$scope.flower.photo = "data:image/jpeg;base64," + imageData;
+					ls.set();
+				}, function(err) {});
+			};
+		});
 
-			});
-		};
-
-
-
+		function getDayDifference(date, daysInterval){
+			var msInOneDay = 86400000;
+			var days = Math.floor((new Date().getTime() - $scope.flower.id) / msInOneDay);
+			return days % daysInterval;
+		}
 	});
+
 
 })();

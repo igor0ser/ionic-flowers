@@ -1,6 +1,11 @@
 <ion-view view-title="Settings">
 <ion-content class="padding">
-  <p class="text-center">You will get notifications at {{time}} o'clock.</p>
-  <button class="button button-block button-royal">Change time</button>
+  <p class="text-center">You will get notifications at {{time.hours | time}}:{{time.minutes | time}} o'clock.</p>
+  <button class="button button-block button-royal" ng-click="setTime()">
+    Change time
+  </button>
+  <button class="button button-block button-royal" ng-click="refresh()">
+    Refresh
+  </button>
 </ion-content>
 </ion-view>
