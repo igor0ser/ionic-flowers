@@ -17,13 +17,8 @@
       <strong>Next watering through:</strong>
       <span>{{flower.days}} days</span>
     </p>
-    <h2>{{image.text}}</h2>
+    <button class="button button-block button-royal" ng-click="makePhoto()">Choose a photo</button>
     <button class="button button-block button-assertive" ng-click="delete()">Delete flower</button>
-    <button class="button button-block button-royal" ng-click="choosePicture()">Choose a photo</button>
-    <button class="button button-block button-calm" ng-click="takePicture()">Make a photo</button>
     <button class="button button-block button-balanced" ng-click="vibrate()">Vibrate</button>
-    <div style="border: 2px solid grey">
-      <img ng-src="{{image.src}}" alt="alternative">
-    </div>
   </ion-content>
 </ion-view>

@@ -2,7 +2,8 @@
 	'use strict';
 	var app = angular.module('app');
 
-	app.controller('DetailsCtrl', function($scope, $stateParams, $state, model, $cordovaVibration, $cordovaCamera) {
+	app.controller('DetailsCtrl', 
+	function($scope, $stateParams, $state, model, $cordovaCamera, $cordovaVibration, $ionicPlatform, ls) {
 		for (var i = 0; i < model.flowers.length; i++) {
 			if ($stateParams.flowerId == model.flowers[i].id){
 				$scope.flower = model.flowers[i];
@@ -19,53 +20,35 @@
 
 		//EXPERIMENTS HERE
 		$scope.image = {
-			src: '',
+			src: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia, possimus facilis!',
 			text: 'hello there'
 		};
 
 		$scope.vibrate = function(){
 			$scope.image.text = "vibration";
-			$cordovaVibration.vibrate(1000);
-		};
-
-		$scope.takePicture = function(){
-			$scope.image.text = "photo";
-			var options = {
-				quality: 50,
-				destinationType: Camera.DestinationType.DATA_URL,
-				sourceType: Camera.PictureSourceType.CAMERA,
-				allowEdit: true,
-				encodingType: Camera.EncodingType.JPEG,
-				targetWidth: 250,
-				targetHeight: 250,
-				popoverOptions: CameraPopoverOptions,
-				saveToPhotoAlbum: false,
-				correctOrientation:true
-			};
-
-			$cordovaCamera.getPicture(options).then(function(imageData) {
-					$scope.image.src = "data:image/jpeg;base64," + imageData;
-				}, function(err) {
-					$scope.image.text = "error: " + err;
-					alert('some error: ', err);
-				});
+			$ionicPlatform.ready(function() {
+				$cordovaVibration.vibrate(1000);
+			});
 		};
 
 
-		$scope.choosePicture = function(){
+		$scope.makePhoto = function(){
 			$scope.image.text = "gallery";
 			var options = {
 				destinationType: Camera.DestinationType.DATA_URL,
-				sourceType: Camera.PictureSourceType.CAMERA
+				sourceType: Camera.PictureSourceType.CAMERA,
+				quality: 10
 			};
 
-			$cordovaCamera.getPicture(options).then(function(imageUri) {
-					$scope.image.src = imageUri;
-				}, function(err) {
-					$scope.image.text = "error: " + err;
-					alert('some error: ', err);
-				});
+			$cordovaCamera.getPicture(options).then(function(imageData) {
+				var $scope.flower = "data:image/jpeg;base64," + imageData;
+				$scope.flower.photo = img;
+				ls.set();
+			}, function(err) {
+
+			});
 		};
+
 
 
 	});
