@@ -17,6 +17,7 @@
 		$scope.delete = function(){
 			var i = model.flowers.indexOf($scope.flower);
 			model.flowers.splice(i, 1);
+			ls.set();
 			$state.go('tab.flowers');
 		};
 

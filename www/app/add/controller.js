@@ -7,6 +7,8 @@
 			name: '',
 			days: ''
 		};
+		console.log($scope.flower.days);
+		console.log($scope.addFlowerForm);
 
 		$ionicPlatform.ready(function () {
 			$scope.add = function(){
