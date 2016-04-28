@@ -9,18 +9,17 @@
     </p>
     <p>
       <strong>Created:</strong>
-      <span>{{flower.created}}</span>
+      <span>{{data.flowerCreated}}</span>
     </p>
     <p>
-      <strong>The frequency of watering:</strong>
-      <span>{{flower.days}} days</span>
+      <strong>The interval of watering:</strong>
+      <span>{{flower.interval}} days</span>
     </p>
     <p>
-      <strong>Next watering through:</strong>
-      <span>{{flower.days}} days</span>
+      <strong>Next watering:</strong>
+      <span>{{data.flowerNext}}</span>
     </p>
-    <button class="button button-block button-royal" ng-click="makePhoto()">Make a photo</button>
+    <button class="button button-block button-royal" ng-click="makePhoto()" ngDisabled="canIMakePhoto">Make a photo</button>
     <button class="button button-block button-assertive" ng-click="delete()">Delete flower</button>
-    <button class="button button-block button-balanced" ng-click="vibrate()">Vibrate</button>
   </ion-content>
 </ion-view>

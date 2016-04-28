@@ -9,8 +9,8 @@
         </label>
         <label class="item item-input">
           <i class="icon ion-ios-alarm-outline"></i>
-          <span class="input-label">Frequency of watring:</span>
-          <input type="number" ng-model="flower.days" min=1 required>
+          <span class="input-label">Interval in days:</span>
+          <input type="number" ng-model="flower.interval" min=1 required>
         </label>
       </div>
       <button type="submit" class="button button-block button-royal" ng-disabled="!addFlowerForm.$valid" >Add</button>

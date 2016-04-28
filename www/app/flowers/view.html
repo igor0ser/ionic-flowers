@@ -4,7 +4,7 @@
       <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="flower in flowers" type="item-text-wrap" ng-href="#/tab/details/{{flower.id}}">
         <img ng-src="{{flower.photo}}">
         <h2>{{flower.name}}</h2>
-        <p>{{flower.days}}</p>
+        <p>{{flower.interval}}</p>
         <i class="icon ion-chevron-right icon-accessory"></i>
       </ion-item>
       <ion-item type="item-text-wrap" ng-if="flowers.length === 0">

@@ -3,30 +3,42 @@
 	var app = angular.module('app');
 
 	app.controller('DetailsCtrl', 
-	function($scope, $stateParams, $state, model, $cordovaCamera, $cordovaVibration, $ionicPlatform, ls) {
+	function($scope, $stateParams, $state, model, $cordovaCamera, notif, $ionicPlatform, ls) {
+		var _id = $stateParams.flowerId;
 		for (var i = 0; i < model.flowers.length; i++) {
-			if ($stateParams.flowerId == model.flowers[i].id){
+			if (model.flowers[i].id == _id){
 				$scope.flower = model.flowers[i];
 			}
 		}
 		
-		$scope.flower.created = new Date(+$scope.flower.id).toLocaleString("ua");
-		$scope.daysLeft = getDayDifference($scope.flower.id, $scope.flower.days);
+		var options = {
+			year: 'numeric',
+			month: 'long',
+			day: 'numeric',
+			weekday: 'long',
+			hour: 'numeric',
+			minute: 'numeric'
+		};
+
+		var format = 'dd.MM.yyyy';
+		$scope.data = {
+			flowerCreated: new Date(+_id).toLocaleString("en-Us", options),
+			flowerNext:new Date(+$scope.flower.notification).toLocaleString("en-Us", options)
+		};
+		$scope.canIMakePhoto = model.sizeOfLS < 500;
+
 
 
 		$scope.delete = function(){
 			var i = model.flowers.indexOf($scope.flower);
+			notif($scope.flower);
 			model.flowers.splice(i, 1);
 			ls.set();
 			$state.go('tab.flowers');
 		};
 
-		
 		$ionicPlatform.ready(function() {
 
-			$scope.vibrate = function(){
-				$cordovaVibration.vibrate(1000);
-			};
 
 			$scope.makePhoto = function(){
 				var options = {
@@ -37,17 +49,17 @@
 					targetHeight: 250
 				};
 				$cordovaCamera.getPicture(options).then(function(imageData) {
+					var sizeOfImage = imageData.length*16/(8*1024);
+					console.log(sizeOfImage);
+					model.sizeOfLS = +model.sizeOfLS + sizeOfImage;
 					$scope.flower.photo = "data:image/jpeg;base64," + imageData;
 					ls.set();
 				}, function(err) {});
 			};
 		});
 
-		function getDayDifference(date, daysInterval){
-			var msInOneDay = 86400000;
-			var days = Math.floor((new Date().getTime() - $scope.flower.id) / msInOneDay);
-			return days % daysInterval;
-		}
+
+
 	});
 
 

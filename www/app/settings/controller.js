@@ -2,7 +2,8 @@
 	'use strict';
 	var app = angular.module('app');
 
-	app.controller('SettingsCtrl', function($scope, model, ionicTimePicker, ls) {
+	app.controller('SettingsCtrl', function($scope, model, ionicTimePicker, notif, ls) {
+		
 		$scope.time = model.time;
 
 
@@ -12,15 +13,16 @@
 					console.log('Time not selected');
 				} else {
 					var selectedTime = new Date(val * 1000);
-					console.log('time is selected');
-					console.log(val);
-					console.log(selectedTime);
 					$scope.time.hours = selectedTime.getUTCHours();
 					$scope.time.minutes = selectedTime.getUTCMinutes();
-					
-					console.log($scope.time);
-					console.log(model);
 					ls.set();
+					options.inputTime = $scope.time.hours * 3600 + $scope.time.minutes;
+
+					var flowers = model.flowers;
+
+					for (var i = 0; i < model.flowers.length; i++) {
+						notif(model.flowers[i], $scope.time);
+					}
 				}
 			},
 			inputTime: $scope.time.hours * 3600 + $scope.time.minutes,
@@ -35,5 +37,7 @@
 		$scope.refresh = function(){
 			ls.refresh();
 		};
+
+		
 	});
 })();

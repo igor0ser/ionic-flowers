@@ -35,10 +35,74 @@
 		}
 	});
 
+	app.service('notif', function($cordovaLocalNotification){
+
+// emulation in browser
+/*		try {
+			$cordovaLocalNotification.schedule({id: 1, at: new Date().getTime() - 1000000});
+		} catch (err) {
+			console.log('we are in browser');
+			$cordovaLocalNotification = {
+				schedule: function(){
+					return {
+						then: function(res){res('browser testing notifications');}
+					};
+				},
+				cancel: function(){
+					return {
+						then: function(res){res('browser testing notifications');}
+					};
+				}
+			};
+		}
+*/
+
+
+		return function (flower, time){
+			if (!time){
+				$cordovaLocalNotification.cancel(+flower.id).then(function(){
+					console.log('Notification removed');
+				});
+				return;
+			} 
+
+			flower.notification = nextWatering(flower, time.hours, time.minutes);
+			$cordovaLocalNotification.schedule({
+				id: +flower.id,
+				title: 'Water you flower',
+				text: "Don't forget to water " + flower.name,
+				at: +flower.notification,
+				data: {
+					flower: flower.name,
+					id: flower.id,
+					dateAt: flower.notification
+				}
+			}).then(function (result) {
+				console.log('Notification added');
+			});
+		};
+
+		function nextWatering(flower, hours, minutes){
+			var d;
+			if (flower.notification){
+				d = new Date(+flower.notification);
+			} else {
+				d = new Date();
+				d.setDate(d.getDate() + flower.interval);
+			}
+			d.setHours(hours);
+			d.setMinutes(minutes);
+			d.setSeconds(0);
+			console.log(d);
+
+			return d.getTime();
+		}
+	});
+
 	app.filter('time', function(){
 		return function(num){
-			if (('' + num).length === 1) {
-				return num + '0';
+			if (num<10) {
+				return '0' + num;
 			} else return num;
 		};
 	});

@@ -7,6 +7,7 @@
 				hours: 12,
 				minutes: 0
 			},
-			flowers: []
+			flowers: [],
+			sizeOfLS: 0
 		});
 })();
