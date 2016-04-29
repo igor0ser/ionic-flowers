@@ -35,6 +35,29 @@
 		}
 	});
 
+	app.service('nextWatering', function($cordovaLocalNotification){
+		return function nextWatering(flower, hours, minutes){
+			var d;
+			if (!hours&&!minutes){
+				d = new Date(flower.notification);
+				d.setDate(d.getDate() + flower.interval);
+				console.log(d);
+				return d.getTime();
+			} else if (flower.notification){
+				d = new Date(+flower.notification);
+			} 
+			else {
+				d = new Date();
+				d.setDate(d.getDate() + flower.interval);
+			}
+			d.setHours(hours);
+			d.setMinutes(minutes);
+			d.setSeconds(0);
+			console.log(d);
+			return d.getTime();
+		};
+	});
+
 	app.service('notif', function($cordovaLocalNotification){
 
 // emulation in browser

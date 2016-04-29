@@ -3,7 +3,7 @@
 	var app = angular.module('app');
 
 	app.controller('DetailsCtrl', 
-	function($scope, $stateParams, $state, model, $cordovaCamera, notif, $ionicPlatform, ls) {
+	function($scope, $stateParams, $state, model, $cordovaCamera, $ionicPlatform, ls, $cordovaLocalNotification) {
 		var _id = $stateParams.flowerId;
 		for (var i = 0; i < model.flowers.length; i++) {
 			if (model.flowers[i].id == _id){
@@ -20,24 +20,26 @@
 			minute: 'numeric'
 		};
 
-		var format = 'dd.MM.yyyy';
 		$scope.data = {
 			flowerCreated: new Date(+_id).toLocaleString("en-Us", options),
 			flowerNext:new Date(+$scope.flower.notification).toLocaleString("en-Us", options)
 		};
 		$scope.canIMakePhoto = model.sizeOfLS < 500;
 
-
-
-		$scope.delete = function(){
-			var i = model.flowers.indexOf($scope.flower);
-			notif($scope.flower);
-			model.flowers.splice(i, 1);
-			ls.set();
-			$state.go('tab.flowers');
-		};
-
 		$ionicPlatform.ready(function() {
+
+			$scope.delete = function(){
+				var i = model.flowers.indexOf($scope.flower);
+				model.flowers.splice(i, 1);
+				ls.set();
+
+				$cordovaLocalNotification.cancel(_id)
+				.then(function (result) {
+					console.log('Notification removed');
+				});
+
+				$state.go('tab.flowers');
+			};
 
 
 			$scope.makePhoto = function(){

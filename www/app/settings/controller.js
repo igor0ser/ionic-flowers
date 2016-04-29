@@ -2,42 +2,82 @@
 	'use strict';
 	var app = angular.module('app');
 
-	app.controller('SettingsCtrl', function($scope, model, ionicTimePicker, notif, ls) {
+	app.controller('SettingsCtrl', function($scope, model, ionicTimePicker, notif, ls, $cordovaLocalNotification, $ionicPlatform, nextWatering) {
 		
 		$scope.time = model.time;
 
+		$ionicPlatform.ready(function () {
+			var options = {
+				callback: function (val) {
+					if (typeof (val) === 'undefined') {
+						console.log('Time not selected');
+					} else {
+						var selectedTime = new Date(val * 1000);
+						$scope.time.hours = selectedTime.getUTCHours();
+						$scope.time.minutes = selectedTime.getUTCMinutes();
+						ls.set();
+						options.inputTime = $scope.time.hours * 3600 + $scope.time.minutes;
 
-		var options = {
-			callback: function (val) {
-				if (typeof (val) === 'undefined') {
-					console.log('Time not selected');
-				} else {
-					var selectedTime = new Date(val * 1000);
-					$scope.time.hours = selectedTime.getUTCHours();
-					$scope.time.minutes = selectedTime.getUTCMinutes();
-					ls.set();
-					options.inputTime = $scope.time.hours * 3600 + $scope.time.minutes;
+						var flowers = model.flowers;
 
-					var flowers = model.flowers;
-
-					for (var i = 0; i < model.flowers.length; i++) {
-						notif(model.flowers[i], $scope.time);
+						for (var i = 0; i < model.flowers.length; i++) {
+							$cordovaLocalNotification.update({
+								id: model.flowers[i].id,
+								at: nextWatering(model.flowers[i], model.time.hours, model.time.minutes)
+							}).then(function (result) {
+								console.log('Notification updated');
+							});
+						}
 					}
-				}
-			},
-			inputTime: $scope.time.hours * 3600 + $scope.time.minutes,
-			format: 24,
-			step: 15,
-		};
+				},
+				inputTime: $scope.time.hours * 3600 + $scope.time.minutes,
+				format: 24,
+				step: 15,
+			};
 
 
-		$scope.setTime = function(){
-			ionicTimePicker.openTimePicker(options);
-		};
-		$scope.refresh = function(){
-			ls.refresh();
-		};
+			$scope.setTime = function(){
+				ionicTimePicker.openTimePicker(options);
+			};
+			$scope.refresh = function(){
+				ls.refresh();
+			};
 
 		
+			var i = 0;
+			var _id = 555;
+			$scope.setN = function(){
+				var now = new Date().getTime();
+				var date = new Date(now + 10 * 1000).getTime();
+				$cordovaLocalNotification.schedule({
+					id: _id,
+					title: 'Testing notification',
+					text: 'oooo #' + i,
+					at: date,
+					data: {}
+				}).then(function (result) {
+					console.log('Notification added');
+					i++;
+				});
+			};
+
+
+			$scope.updateN = function(){
+				$cordovaLocalNotification.update({
+					id: _id,
+					title: 'Testing notification - UPDATED',
+					text: 'aaaiii'
+				}).then(function (result) {
+					console.log('Notification updated');
+				});
+			};
+			
+			$scope.removeN = function(){
+				$cordovaLocalNotification.cancel(_id)
+				.then(function (result) {
+					console.log('Notification removed');
+				});
+			};
+		});
 	});
 })();

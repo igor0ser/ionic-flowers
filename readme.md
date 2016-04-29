@@ -18,3 +18,9 @@ Connect device and install its driver on computer
 ionic build android
 
 ionic run android
+
+or
+
+ionic build ios
+
+ionic run ios
