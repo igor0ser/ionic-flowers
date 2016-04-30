@@ -2,7 +2,7 @@
 	'use strict';
 	var app = angular.module('app');
 
-	app.controller('SettingsCtrl', function($scope, model, ionicTimePicker, notif, ls, $cordovaLocalNotification, $ionicPlatform, nextWatering) {
+	app.controller('SettingsCtrl', function($scope, model, ionicTimePicker, ls, $cordovaLocalNotification, $ionicPlatform, nextWatering, $window) {
 		
 		$scope.time = model.time;
 
@@ -77,6 +77,14 @@
 				.then(function (result) {
 					console.log('Notification removed');
 				});
+			};
+
+			$scope.removeLS = function(){
+				$window.localStorage.removeItem('my_flowers_list_account_for_ionic_application');
+			};
+
+			$scope.reload = function() {
+				$window.location.reload();
 			};
 		});
 	});

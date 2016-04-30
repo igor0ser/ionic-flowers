@@ -8,6 +8,8 @@
 			interval: ''
 		};
 
+		console.log(new Date(nextWatering(model.flowers[1])));
+
 		$ionicPlatform.ready(function () {
 			$scope.add = function(){
 				var flower = {};
@@ -18,6 +20,7 @@
 				$scope.flower.name = '';
 				$scope.flower.interval = '';
 				$state.go('tab.flowers');
+				console.log(model.time);
 
 
 				$cordovaLocalNotification.schedule({
@@ -30,6 +33,7 @@
 					}
 				}).then(function (result) {
 					console.log('Notification added');
+					console.log(flower.notification);
 				});
 
 				model.flowers.push(flower);

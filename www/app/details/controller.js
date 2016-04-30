@@ -10,7 +10,7 @@
 				$scope.flower = model.flowers[i];
 			}
 		}
-		
+		console.log($scope.flower);
 		var options = {
 			year: 'numeric',
 			month: 'long',
