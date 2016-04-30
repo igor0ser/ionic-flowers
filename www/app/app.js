@@ -32,6 +32,8 @@
 				}).then(function (result) {
 					console.log('Notification added');
 				});
+
+				ls.set();
 			});
 
 		$ionicPlatform.ready(function() {

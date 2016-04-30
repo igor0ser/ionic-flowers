@@ -41,7 +41,7 @@
 			var d;
 			if (arguments.length === 1){
 				//setting interval again when it triggers
-				d = new Date(flower.notification);
+				d = new Date(+flower.notification);
 				d.setDate(d.getDate() + flower.interval);
 			} else {
 				d = (flower.notification) ? 

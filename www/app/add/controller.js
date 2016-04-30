@@ -8,8 +8,6 @@
 			interval: ''
 		};
 
-		console.log(new Date(nextWatering(model.flowers[1])));
-
 		$ionicPlatform.ready(function () {
 			$scope.add = function(){
 				var flower = {};

@@ -3,7 +3,7 @@
 	var app = angular.module('app');
 
 	app.controller('DetailsCtrl', 
-	function($scope, $stateParams, $state, model, $cordovaCamera, $ionicPlatform, ls, $cordovaLocalNotification) {
+	function($scope, $stateParams, $state, model, $cordovaCamera, $ionicPlatform, ls, $cordovaLocalNotification, nextWatering) {
 		var _id = $stateParams.flowerId;
 		for (var i = 0; i < model.flowers.length; i++) {
 			if (model.flowers[i].id == _id){
@@ -58,6 +58,12 @@
 					ls.set();
 				}, function(err) {});
 			};
+
+			$scope.test = function(){
+				nextWatering($scope.flower);
+				console.log(new Date($scope.flower.notification));
+				ls.set();
+			}
 		});
 
 
