@@ -13,6 +13,18 @@
 				$cordovaVibration.vibrate(1000);
 
 				if (notification.id == 555) return;
+				if (notification.id == 777){
+					var now = new Date().getTime();
+					var date = new Date(now + 10* 60 * 1000).getTime();
+					$cordovaLocalNotification.schedule({
+						id: 777,
+						title: 'delayed notific',
+						text: 'ok',
+						at: date
+					}).then(function (result) {
+						console.log('testing notif prolonged');
+					});
+				}
 
 				var flower;
 				for (var i = 0; i < model.flowers.length; i++) {

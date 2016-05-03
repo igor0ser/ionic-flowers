@@ -37,7 +37,7 @@ input::-webkit-inner-spin-button {
 	display: inline-block;
 	position: absolute;
 	top: 16px;
-	left: 16px;
+	left: 16px;	
 	border-radius: 50%;
 
 }

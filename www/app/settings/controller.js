@@ -86,6 +86,26 @@
 			$scope.reload = function() {
 				$window.location.reload();
 			};
+
+			$scope.setNT = function(){
+				var now = new Date().getTime();
+				var date = new Date(now + 10* 60 * 1000).getTime();
+				$cordovaLocalNotification.schedule({
+					id: 777,
+					title: 'delayed notific',
+					text: 'ok',
+					at: date
+				}).then(function (result) {
+					console.log('Testing notification added');
+				});
+			};
+
+			$scope.removeNT = function(){
+				$cordovaLocalNotification.cancel(777)
+				.then(function (result) {
+					console.log('Testing notification canceled');
+				});
+			};
 		});
 	});
 })();
