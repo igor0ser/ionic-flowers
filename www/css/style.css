@@ -19,38 +19,31 @@ input::-webkit-inner-spin-button {
 	text-align: center;
 }
 
-.flower-photo-wrap{
+.flower-photo{
 	margin: auto;
 	width: 250px;
 	height: 250px;
 	border-radius: 50%;
-	overflow: hidden;
-	text-align: center;
-	position: relative;
+	background-size: cover;
+	background-position: center center;
 }
 
-#flower-photo{
+.flower-photo-small{
+	width: 40px;
+	height: 40px;
+	background-size: cover;
+	background-position: center center;
+	background-image: url(../img/def-plant.jpg);
+	display: inline-block;
 	position: absolute;
-	top: 0;
-	left: 0;
-	bottom: 0;
-	right: 0;
-	margin: auto;
+	top: 16px;
+	left: 16px;
+	border-radius: 50%;
+
 }
 
 .ionic_timepicker_popup .popup .heading,
 .ionic_timepicker_popup .popup .button_set,
 .ionic_timepicker_popup .popup .button_close{
 	background-color: #886aea;
-}
-
-
-.photo-wide{
-	height: 100%;
-	width: auto;
-}
-
-.photo-high{
-	width: 100%;
-	height: auto;
 }

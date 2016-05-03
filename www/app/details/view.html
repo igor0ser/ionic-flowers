@@ -1,7 +1,6 @@
 <ion-view view-title="{{flower.name}}">
   <ion-content class="padding">
-    <div class="flower-photo-wrap">
-      <img ng-src="{{flower.photo}}" id="flower-photo">
+    <div class="flower-photo" ng-style="{'background-image':'url({{flower.photo}})'}">
     </div>
     <p>
       <strong>Name:</strong>

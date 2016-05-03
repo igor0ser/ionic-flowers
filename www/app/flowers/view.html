@@ -2,7 +2,7 @@
   <ion-content>
     <ion-list>
       <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="flower in flowers" type="item-text-wrap" ng-href="#/tab/details/{{flower.id}}">
-        <img ng-src="{{flower.photo}}">
+        <div class="flower-photo-small"  ng-style="{'background-image':'url({{flower.photo}})'}"></div>
         <h2>{{flower.name}}</h2>
         <p>{{flower.interval}}</p>
         <i class="icon ion-chevron-right icon-accessory"></i>

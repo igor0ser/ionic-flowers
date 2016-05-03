@@ -22,7 +22,8 @@
 
 		$scope.data = {
 			flowerCreated: new Date(+_id).toLocaleString("en-Us", options),
-			flowerNext:new Date(+$scope.flower.notification).toLocaleString("en-Us", options)
+			flowerNext:new Date(+$scope.flower.notification).toLocaleString("en-Us", options),
+			style: {"background-image": 'url(' + $scope.flower.photo + ')'}
 		};
 		$scope.canIMakePhoto = model.sizeOfLS < 500;
 
