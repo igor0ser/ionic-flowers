@@ -46,8 +46,7 @@
 				var options = {
 					destinationType: Camera.DestinationType.DATA_URL,
 					sourceType: Camera.PictureSourceType.CAMERA,
-					quality: 10,
-					targetWidth: 250, 
+					quality: 10, 
 					targetHeight: 250
 				};
 				$cordovaCamera.getPicture(options).then(function(imageData) {
@@ -55,6 +54,7 @@
 					console.log(sizeOfImage);
 					model.sizeOfLS = +model.sizeOfLS + sizeOfImage;
 					$scope.flower.photo = "data:image/jpeg;base64," + imageData;
+					$angular.element('#photo-')
 					ls.set();
 				}, function(err) {});
 			};

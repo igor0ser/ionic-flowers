@@ -29,15 +29,13 @@ input::-webkit-inner-spin-button {
 	position: relative;
 }
 
-.flower-photo{
+#flower-photo{
 	position: absolute;
 	top: 0;
 	left: 0;
 	bottom: 0;
 	right: 0;
 	margin: auto;
-	width: 100%;
-	height: 100%;
 }
 
 .ionic_timepicker_popup .popup .heading,
@@ -46,12 +44,13 @@ input::-webkit-inner-spin-button {
 	background-color: #886aea;
 }
 
-.another-photo{
-	border: 1px dashed lime;
+
+.photo-wide{
+	height: 100%;
+	width: auto;
 }
 
-.another-photo-h3{
-	border: 1px dashed gold;
-	min-height: 50px;
-	min-width: 100px;
+.photo-high{
+	width: 100%;
+	height: auto;
 }
