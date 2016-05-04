@@ -3,7 +3,7 @@
 	var app = angular.module('app');
 
 	app.controller('DetailsCtrl', 
-	function($scope, $stateParams, $state, model, $cordovaCamera, $ionicPlatform, ls, $cordovaLocalNotification, nextWatering) {
+	function($scope, $stateParams, $state, model, $cordovaCamera, $ionicPlatform, ls, $cordovaLocalNotification, nextWatering, $window) {
 		var _id = $stateParams.flowerId;
 		for (var i = 0; i < model.flowers.length; i++) {
 			if (model.flowers[i].id == _id){
@@ -44,19 +44,22 @@
 
 
 			$scope.makePhoto = function(){
+				console.log('make a photo');
 				var options = {
 					destinationType: Camera.DestinationType.DATA_URL,
 					sourceType: Camera.PictureSourceType.CAMERA,
-					quality: 10, 
-					targetHeight: 250
+					correctOrientation:true,
+					quality: 10
 				};
 				$cordovaCamera.getPicture(options).then(function(imageData) {
 					var sizeOfImage = imageData.length*16/(8*1024);
 					console.log(sizeOfImage);
 					model.sizeOfLS = +model.sizeOfLS + sizeOfImage;
 					$scope.flower.photo = "data:image/jpeg;base64," + imageData;
-					$angular.element('#photo-')
 					ls.set();
+					console.log('photo is made.');
+					//$window.location.reload();
+					$state.go($state.current, {}, {reload: true});
 				}, function(err) {});
 			};
 

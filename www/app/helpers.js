@@ -60,6 +60,8 @@
 		};
 	});
 
+/*
+//emulating in browser
 	app.service('$cordovaLocalNotification', function(){
 		var $cordovaLocalNotification = {
 			schedule: function(obj){
@@ -83,7 +85,7 @@
 
 		return $cordovaLocalNotification;
 
-	});
+	});*/
 
 
 	app.filter('time', function(){

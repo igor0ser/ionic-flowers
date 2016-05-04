@@ -89,7 +89,7 @@
 
 			$scope.setNT = function(){
 				var now = new Date().getTime();
-				var date = new Date(now + 10* 60 * 1000).getTime();
+				var date = new Date(now + 10 * 1000).getTime();
 				$cordovaLocalNotification.schedule({
 					id: 777,
 					title: 'delayed notific',
