@@ -60,34 +60,6 @@
 		};
 	});
 
-/*
-//emulating in browser
-	app.service('$cordovaLocalNotification', function(){
-		var $cordovaLocalNotification = {
-			schedule: function(obj){
-				console.log(new Date(+obj.at));
-				return {
-					then: function(res){res('browser testing notifications');}
-				};
-			},
-			cancel: function(obj){
-				return {
-					then: function(res){res('browser testing notifications');}
-				};
-			},
-			update: function(obj){
-				console.log(new Date(+obj.at));
-				return {
-					then: function(res){res('browser testing notifications');}
-				};
-			}
-		};
-
-		return $cordovaLocalNotification;
-
-	});*/
-
-
 	app.filter('time', function(){
 		return function(num){
 			if (num<10) {

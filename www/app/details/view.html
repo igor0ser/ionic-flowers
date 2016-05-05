@@ -1,7 +1,8 @@
 <ion-view view-title="{{flower.name}}">
   <ion-content class="padding">
-    <div class="flower-photo" ng-style="{'background-image':'url({{flower.photo}})'}">
-    </div>
+  <div class="flower-photo-wrap">
+    <img ng-src="{{flower.photo}}" class="flower-photo">
+  </div>
     <p>
       <strong>Name:</strong>
       <span>{{flower.name}}</span>
@@ -18,9 +19,7 @@
       <strong>Next watering:</strong>
       <span>{{data.flowerNext}}</span>
     </p>
-    <button class="button button-block button-royal" ng-click="makePhoto()" ngDisabled="canIMakePhoto">Make a photo</button>
+    <button class="button button-block button-royal" ng-click="makePhoto()" ngDisabled="data.canIMakePhoto">Make a photo</button>
     <button class="button button-block button-assertive" ng-click="delete()">Delete flower</button>
-    <button class="button button-block button-assertive" ng-click="test()">test update</button>
-    <img ng-src="{{flower.photo}}" alt="">
   </ion-content>
 </ion-view>

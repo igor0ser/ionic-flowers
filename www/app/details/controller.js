@@ -10,7 +10,7 @@
 				$scope.flower = model.flowers[i];
 			}
 		}
-		console.log($scope.flower);
+
 		var options = {
 			year: 'numeric',
 			month: 'long',
@@ -20,12 +20,13 @@
 			minute: 'numeric'
 		};
 
-		$scope.data = {
-			flowerCreated: new Date(+_id).toLocaleString("en-Us", options),
-			flowerNext:new Date(+$scope.flower.notification).toLocaleString("en-Us", options),
-			style: {"background-image": 'url(' + $scope.flower.photo + ')'}
-		};
-		$scope.canIMakePhoto = model.sizeOfLS < 500;
+		$scope.$on('$ionicView.loaded', function() {
+			$scope.data = {
+				flowerCreated: new Date(+_id).toLocaleString("en-Us", options),
+				flowerNext:new Date(+$scope.flower.notification).toLocaleString("en-Us", options),
+				canIMakePhoto: model.sizeOfLS < 500
+			};
+		});
 
 		$ionicPlatform.ready(function() {
 
@@ -53,21 +54,13 @@
 				};
 				$cordovaCamera.getPicture(options).then(function(imageData) {
 					var sizeOfImage = imageData.length*16/(8*1024);
-					console.log(sizeOfImage);
 					model.sizeOfLS = +model.sizeOfLS + sizeOfImage;
 					$scope.flower.photo = "data:image/jpeg;base64," + imageData;
 					ls.set();
 					console.log('photo is made.');
-					//$window.location.reload();
-					$state.go($state.current, {}, {reload: true});
 				}, function(err) {});
 			};
-
-			$scope.test = function(){
-				nextWatering($scope.flower);
-				console.log(new Date($scope.flower.notification));
-				ls.set();
-			}
+			
 		});
 
 
