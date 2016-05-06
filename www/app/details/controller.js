@@ -26,6 +26,7 @@
 				flowerNext:new Date(+$scope.flower.notification).toLocaleString("en-Us", options),
 				canIMakePhoto: model.sizeOfLS < 500
 			};
+			
 		});
 
 		$ionicPlatform.ready(function() {

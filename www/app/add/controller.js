@@ -9,6 +9,7 @@
 		};
 
 		$ionicPlatform.ready(function () {
+
 			$scope.add = function(){
 				var flower = {};
 				angular.copy($scope.flower, flower);
@@ -34,6 +35,8 @@
 				model.flowers.push(flower);
 				ls.set();
 			};
+
+
 		});
 
 });
