@@ -46,10 +46,6 @@
 				StatusBar.styleDefault();
 			}
 		});
-		
-		console.log('coolMethod');
-		console.log(window.plugins);
-
 	});
 
 })();
