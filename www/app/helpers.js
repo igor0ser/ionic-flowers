@@ -42,15 +42,15 @@
 			if (arguments.length === 1){
 				//setting interval again when it triggers
 				d = new Date(+flower.notification);
-				d.setDate(d.getDate() + flower.interval);
+				d.setDate(d.getDate() + (+flower.interval));
 			} else {
 				d = (flower.notification) ? 
 				new Date(+flower.notification) : //existing notif, changing time
 				new Date(); //setting new notif
 
-				if (!flower.notification) d.setDate(d.getDate() + flower.interval);
-				d.setHours(hours);
-				d.setMinutes(minutes);
+				if (!flower.notification) d.setDate(d.getDate() + (+flower.interval));
+				d.setHours(+hours);
+				d.setMinutes(+minutes);
 				d.setSeconds(0);
 			}
 
