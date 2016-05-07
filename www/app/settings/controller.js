@@ -44,6 +44,15 @@
 				ionicTimePicker.openTimePicker(options);
 			};
 
+			$scope.test = function(){
+				window.mySuperPluginMethod('ooo', function() {console.log('success')}, function(){console.log('error')});
+				console.log('end');
+			};
+			console.log('window testing');
+			console.log(window.mySuperPluginMethod.toString);
+
+
+
 
 
 /*			var i = 0;
