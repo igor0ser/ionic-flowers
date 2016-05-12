@@ -2,6 +2,12 @@
 	'use strict';
 	var app = angular.module('app');
 
+	app.service('flowerAlert', function($window){
+		return function(flower){
+			$window.cordova.plugins.FlowerAlert.alert(flower);
+		};
+	});
+
 	app.service('ls', function($window, model){
 		var KEY = 'my_flowers_list_account_for_ionic_application';
 		var _this = this;

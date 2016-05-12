@@ -2,7 +2,7 @@
 	'use strict';
 	var app = angular.module('app');
 
-	app.controller('SettingsCtrl', function($scope, model, ionicTimePicker, ls, $cordovaLocalNotification, $ionicPlatform, nextWatering, $window) {
+	app.controller('SettingsCtrl', function($scope, model, ionicTimePicker, ls, $cordovaLocalNotification, $ionicPlatform, nextWatering) {
 		
 		$scope.time = model.time;
 
@@ -43,18 +43,6 @@
 			$scope.setTime = function(){
 				ionicTimePicker.openTimePicker(options);
 			};
-
-/*			$scope.test = function(){
-				console.log('start');
-				window.mySuperPluginMethod('ooo', function() {console.log('success')}, function(){console.log('error')});
-				console.log('end');
-			};
-			
-			console.log('window testing');
-			console.log(window.mySuperPluginMethod.toString);
-*/
-
-
 
 
 /*			var i = 0;

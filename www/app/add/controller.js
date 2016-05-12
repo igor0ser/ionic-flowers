@@ -2,7 +2,7 @@
 	'use strict';
 	var app = angular.module('app');
 
-	app.controller('AddCtrl', function($scope, $state, ls, model, nextWatering, $ionicPlatform, $cordovaLocalNotification) {
+	app.controller('AddCtrl', function($scope, $state, ls, model, nextWatering, $ionicPlatform, $cordovaLocalNotification, flowerAlert) {
 		$scope.flower = {
 			name: '',
 			interval: ''
@@ -18,6 +18,7 @@
 
 				$scope.flower.name = '';
 				$scope.flower.interval = '';
+				flowerAlert(flower);
 				$state.go('tab.flowers');
 
 				$cordovaLocalNotification.schedule({
