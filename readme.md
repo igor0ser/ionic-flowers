@@ -1,41 +1,33 @@
-# Module 5 HomeWork 11:
+Homework 11 JS Menthoring proggramm
+=====================================
 
 
-## Install:
+1. install Java SDK and Android SDK
 
-Install Java-SDK and Android-SDK
+2. Install cordova and ionic globally
 
-## Install globally:
+	> npm install -g cordova
 
-npm install -g cordova
+	> npm install -g ionic
 
-npm install -g ionic
+3. Load all dependecies with command
 
-## In folder:
+	> ionic state restore
 
-cd HW11
+4. Connect Android device and install it's driver on computer
 
-bower install
+5. Run application
 
-npm install
+	> ionic run android
 
-cordova plugin add https://github.com/igor0ser/FlowerAlert.git
 
-cordova plugin add https://github.com/katzer/cordova-plugin-local-notifications.git
+About:
+----
 
-cordova plugin add cordova-plugin-camera
+You can use this application to add flowers and get notifications from app when you need to water them. You can choose appropriate time to get this notifications. Your phone will vibrate when notification triggers. Also you can make photo of flowers and use it as avatar for flower.
 
-cordova plugin add cordova-plugin-vibration
 
-cordova plugin add cordova-plugin-whitelist
+Plugin:
+----
 
-## Connect device and install its driver on computer
-
-## Run application with command: 
-
-ionic platform add android
-
-ionic build android
-
-ionic run android
-
+I've created plugin that makes alert using name of flower. You can see this alert when you've added a new flower. App automatically loads this flower from my github - https://github.com/igor0ser/FlowerAlert
