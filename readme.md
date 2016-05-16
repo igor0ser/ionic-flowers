@@ -30,4 +30,4 @@ You can use this application to add flowers and get notifications from app when 
 Plugin:
 ----
 
-I've created plugin that makes alert using name of flower. You can see this alert when you've added a new flower. App automatically loads this flower from my github - https://github.com/igor0ser/FlowerAlert
+I've created plugin that makes alert. Developer can choose one of five themes for alert: light, holo-light, dark, holo-dark or traditional. You can see this alert when you've added a new flower (holo-light theme) or when you are deleting flower (holo-dark theme). App automatically loads this plugin from my github repository- https://github.com/igor0ser/FlowerAlert

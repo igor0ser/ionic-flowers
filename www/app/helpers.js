@@ -3,8 +3,8 @@
 	var app = angular.module('app');
 
 	app.service('flowerAlert', function($window){
-		return function(flower){
-			$window.cordova.plugins.FlowerAlert.alert(flower);
+		return function(text, theme){
+			$window.cordova.plugins.FlowerAlert.alert(text, theme);
 		};
 	});
 

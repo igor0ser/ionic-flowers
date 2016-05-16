@@ -18,7 +18,7 @@
 
 				$scope.flower.name = '';
 				$scope.flower.interval = '';
-				flowerAlert(flower);
+				flowerAlert('You added a flower - ' + flower.name, 'holo_light');
 				$state.go('tab.flowers');
 
 				$cordovaLocalNotification.schedule({

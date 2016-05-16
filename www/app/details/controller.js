@@ -3,7 +3,7 @@
 	var app = angular.module('app');
 
 	app.controller('DetailsCtrl', 
-	function($scope, $stateParams, $state, model, $cordovaCamera, $ionicPlatform, ls, $cordovaLocalNotification, nextWatering, $window) {
+	function($scope, $stateParams, $state, model, $cordovaCamera, $ionicPlatform, ls, $cordovaLocalNotification, nextWatering, flowerAlert) {
 		var _id = $stateParams.flowerId;
 		for (var i = 0; i < model.flowers.length; i++) {
 			if (model.flowers[i].id == _id){
@@ -40,6 +40,8 @@
 				.then(function (result) {
 					console.log('Notification removed');
 				});
+
+				flowerAlert('You deleted a flower - ' + $scope.flower.name, 'holo_dark');
 
 				$state.go('tab.flowers');
 			};
